@@ -8,138 +8,138 @@
   <style>
     :root {
       --accent: #6c63ff;
-      --bg-dark: #0f1724;
-      --bg-light: #f5f5f5;
-      --text-dark: #e6eef6;
-      --text-light: #1a1a1a;
-      --card-dark: #0b1220;
-      --card-light: #ffffff;
+      --bg: #0f1724;
+      --text: #e6eef6;
+      --card-bg: #0b1220;
     }
     * { box-sizing: border-box; }
-    html, body { height: 100%; margin: 0; font-family: Inter, sans-serif; scroll-behavior: smooth; }
-
-    body.dark { background: var(--bg-dark); color: var(--text-dark); }
-    body.light { background: var(--bg-light); color: var(--text-light); }
+    html, body { height: 100%; margin: 0; font-family: Inter, sans-serif; scroll-behavior: smooth; background: var(--bg); color: var(--text); overflow-x: hidden; }
 
     .container { max-width: 980px; margin: 0 auto; padding: 28px; }
 
-    .top-nav { display: flex; gap: 12px; justify-content: center; margin-top: 16px; flex-wrap: wrap; }
-    .top-nav button { background: transparent; border: 1px solid rgba(255,255,255,0.06); padding: 8px 12px; border-radius: 8px; font-size: 13px; cursor: pointer; color: inherit; }
+    .top-nav { display: flex; gap: 12px; justify-content: center; margin-top: 16px; flex-wrap: wrap; position: sticky; top: 0; z-index: 10; background: rgba(15,23,36,0.95); padding: 8px 0; border-radius: 12px; }
+    .top-nav button { background: transparent; border: 1px solid rgba(255,255,255,0.06); padding: 8px 12px; border-radius: 8px; font-size: 14px; cursor: pointer; color: inherit; transition: 0.3s; }
+    .top-nav button.active { border-color: var(--accent); color: var(--accent); }
 
-    .hero-section { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 60vh; text-align: center; margin-top: 20px; background: linear-gradient(135deg, #6c63ff, #00c2ff); color: white; border-radius: 12px; }
-    .typewriter { font-size: 48px; font-weight: 700; border-right: 4px solid #fff; white-space: nowrap; overflow: hidden; }
+    .hero-section { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 60vh; text-align: center; margin-top: 20px; border-radius: 12px; overflow: hidden; background: linear-gradient(135deg, #6c63ff, #00c2ff); }
+    .typewriter { font-size: 56px; font-weight: 700; border-right: 4px solid #fff; white-space: nowrap; overflow: hidden; z-index: 2; position: relative; }
 
-    header { display: flex; gap: 20px; align-items: center; margin-top: 32px; justify-content: center; flex-direction: column; text-align: center; }
-    .avatar { width: 96px; height: 96px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), #00c2ff); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 32px; margin-bottom: 8px; }
-    h1 { margin: 0; font-size: 26px; }
-    .sub { margin-top: 6px; font-size: 14px; }
+    .bubble { position: absolute; color: white; font-weight: bold; opacity: 0.7; pointer-events: none; animation: floatUp linear infinite; }
+    @keyframes floatUp { 0% { transform: translateY(100vh) scale(0); opacity: 0; } 50% { opacity: 0.7; } 100% { transform: translateY(-10vh) scale(1); opacity: 0; } }
+
+    .section { display: flex; flex-wrap: wrap; align-items: center; margin: 48px 0; opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+    .section.in-view { opacity: 1; transform: translateY(0); }
+    .section:nth-child(even) { flex-direction: row-reverse; }
+
+    .section-photo { flex: 1 1 300px; min-height: 250px; border-radius: 12px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; font-size: 24px; color: rgba(255,255,255,0.5); margin: 12px; }
+    .section-details { flex: 2 1 500px; padding: 12px; }
+    .section-title { font-size: 32px; font-weight: 700; border-bottom: 3px solid var(--accent); display: inline-block; margin-bottom: 16px; }
+    .section-details p, .section-details ul { font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.75); }
 
     .grid { display: grid; grid-template-columns: 1fr 320px; gap: 22px; margin-top: 22px; }
     .card { background: rgba(255,255,255,0.02); border-radius: 12px; padding: 16px; margin-bottom: 16px; transition: transform 0.2s ease, box-shadow 0.2s ease; }
-    .card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 12px 24px rgba(0,0,0,0.4); }
 
-    .section-title { font-weight: 700; margin-bottom: 8px; }
-    .contact-list, ul { list-style: none; padding: 0; margin: 8px 0 0 0; }
-    .contact-list li, ul li { font-size: 14px; color: rgba(255,255,255,0.6); margin: 6px 0; }
-    .pill { display: inline-block; padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,0.03); font-size: 13px; margin: 6px 6px 6px 0; }
+    .pill { display: inline-block; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,0.03); font-size: 13px; margin: 6px 6px 6px 0; transition: transform 0.3s ease; }
+    .pill:hover { transform: scale(1.1); }
 
     img.placeholder { width: 100%; height: auto; border-radius: 12px; margin-top: 10px; background: rgba(255,255,255,0.05); }
 
-    .switch { position: relative; display: inline-block; width: 50px; height: 24px; }
-    .switch input { opacity: 0; width: 0; height: 0; }
-    .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
-    .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
-    input:checked + .slider { background-color: #6c63ff; }
-    input:checked + .slider:before { transform: translateX(26px); }
-
     footer { color: rgba(255,255,255,0.6); font-size: 13px; margin-top: 28px; text-align: center; }
 
-    @media (max-width:880px) { .grid { grid-template-columns: 1fr; } .avatar { width: 80px; height: 80px; } .typewriter { font-size: 36px; } }
+    @media (max-width:880px) { .grid { grid-template-columns: 1fr; } .hero-section .typewriter { font-size: 40px; } .section { flex-direction: column; } }
   </style>
 </head>
-<body class="dark">
+<body>
   <div class="container">
     <div class="top-nav">
+      <button data-scroll="#about">About Me</button>
       <button data-scroll="#experience">Experience</button>
       <button data-scroll="#projects">Projects</button>
       <button data-scroll="#skills">Skills</button>
       <button data-scroll="#awards">Awards & Achievements</button>
       <button data-scroll="#contact">Contact</button>
-      <label class="switch">
-        <input type="checkbox" id="theme-toggle">
-        <span class="slider"></span>
-      </label>
     </div>
 
     <section class="hero-section">
       <span class="typewriter" id="typewriter"></span>
     </section>
 
-    <header>
-      <div class="avatar">WD</div>
-      <h1>William Ding</h1>
-      <div class="sub">Aspiring Game Developer & Multilingual Tutor</div>
-    </header>
+    <section id="about" class="section">
+      <div class="section-photo">Photo</div>
+      <div class="section-details">
+        <div class="section-title">About Me</div>
+        <p>William Ding — Aspiring Game Developer, Multilingual Tutor, and Student currently enrolled in the International Baccalaureate program. Passionate about programming, art, video games, and languages. Committed to learning and creating projects that blend creativity with technical skill.</p>
+        <p><strong>Education:</strong> Merivale High School — IB Diploma (STEM Focus)</p>
+        <p><strong>Interests:</strong> Computer Science, Art, Swimming, Languages, Video Games</p>
+      </div>
+    </section>
 
-    <div class="grid">
-      <main>
-        <section id="experience" class="card">
-          <div class="section-title">Experience</div>
-          <img class="placeholder" src="https://via.placeholder.com/600x200" alt="Experience placeholder">
-          <ul>
-            <li>Auxillium — French & Math Mentor (Volunteer)</li>
-            <li>Self-employed — French Teacher</li>
-          </ul>
-        </section>
+    <section id="experience" class="section">
+      <div class="section-photo">Experience Image</div>
+      <div class="section-details">
+        <div class="section-title">Experience</div>
+        <ul>
+          <li>Auxillium — French & Math Mentor (Volunteer)</li>
+          <li>Self-employed — French Teacher</li>
+        </ul>
+      </div>
+    </section>
 
-        <section id="projects" class="card">
-          <div class="section-title">Projects</div>
-          <img class="placeholder" src="https://via.placeholder.com/600x200" alt="Project placeholder">
-          <ul>
-            <li><strong>HoloLegends — 2D Pixel Game</strong>: In development, designed combat system, wrote game logic in GML. <a href="#">View Project</a></li>
-            <li><strong>Another Project</strong>: Placeholder description. <a href="#">View Project</a></li>
-          </ul>
-        </section>
+    <section id="projects" class="section">
+      <div class="section-photo">Project Image</div>
+      <div class="section-details">
+        <div class="section-title">Projects</div>
+        <ul>
+          <li><strong>HoloLegends — 2D Pixel Game</strong>: In development, designed combat system, wrote game logic in GML. <a href="#">View Project</a></li>
+          <li><strong>Another Project</strong>: Placeholder description. <a href="#">View Project</a></li>
+        </ul>
+      </div>
+    </section>
 
-        <section id="awards" class="card">
-          <div class="section-title">Awards & Achievements</div>
-          <img class="placeholder" src="https://via.placeholder.com/600x100" alt="Awards placeholder">
-          <ul>
-            <li>Cayley Mathematics Contest — Certificate of Distinction (Top 25%). <a href="#">PDF</a></li>
-            <li>Merivale HS — Silver Medalist (90%+ average). <a href="#">PDF</a></li>
-            <li>Swimming Competitions — Represented school at provincial level.</li>
-          </ul>
-        </section>
-      </main>
+    <section id="awards" class="section">
+      <div class="section-photo">Awards Image</div>
+      <div class="section-details">
+        <div class="section-title">Awards & Achievements</div>
+        <ul>
+          <li>Cayley Mathematics Contest — Certificate of Distinction (Top 25%). <a href="#">PDF</a></li>
+          <li>Merivale HS — Silver Medalist (90%+ average). <a href="#">PDF</a></li>
+          <li>Swimming Competitions — Represented school at provincial level.</li>
+        </ul>
+      </div>
+    </section>
 
-      <aside>
-        <div id="contact" class="card">
-          <div class="section-title">Contact</div>
-          <ul class="contact-list">
-            <li><strong>Address:</strong> 949 Rossburn Crescent, Nepean, ON K2J 0L6</li>
-            <li><strong>Phone:</strong> (343) 777-8397</li>
-            <li><strong>Email:</strong> DINW21164@gmail.com</li>
-          </ul>
-          <div style="margin-top:12px">
-            <a class="button" href="mailto:DINW21164@gmail.com">Email me</a>
-          </div>
+    <section id="skills" class="section">
+      <div class="section-photo">Skills Image</div>
+      <div class="section-details">
+        <div class="section-title">Skills</div>
+        <div class="skills">
+          <span class="pill">Python</span>
+          <span class="pill">GML</span>
+          <span class="pill">C++</span>
+          <span class="pill">Game Design</span>
+          <span class="pill">Pixel Art</span>
+          <span class="pill">Creative Thinking</span>
+          <span class="pill">Time Management</span>
+          <span class="pill">Multilingual</span>
         </div>
+      </div>
+    </section>
 
-        <div class="card" style="margin-top:16px">
-          <div class="section-title">Skills</div>
-          <div class="skills">
-            <span class="pill">Python</span>
-            <span class="pill">GML</span>
-            <span class="pill">C++</span>
-            <span class="pill">Game Design</span>
-            <span class="pill">Pixel Art</span>
-            <span class="pill">Creative Thinking</span>
-            <span class="pill">Time Management</span>
-            <span class="pill">Multilingual</span>
-          </div>
+    <section id="contact" class="section">
+      <div class="section-photo">Contact Image</div>
+      <div class="section-details">
+        <div class="section-title">Contact</div>
+        <ul class="contact-list">
+          <li><strong>Address:</strong> 949 Rossburn Crescent, Nepean, ON K2J 0L6</li>
+          <li><strong>Phone:</strong> (343) 777-8397</li>
+          <li><strong>Email:</strong> DINW21164@gmail.com</li>
+        </ul>
+        <div style="margin-top:12px">
+          <a class="button" href="mailto:DINW21164@gmail.com">Email me</a>
         </div>
-      </aside>
-    </div>
+      </div>
+    </section>
 
     <footer>
       <div>Designed & maintained by William Ding — Built for GitHub Pages</div>
@@ -168,19 +168,37 @@
     }
     type();
 
-    const themeToggleInput = document.querySelector('#theme-toggle');
-    themeToggleInput.addEventListener('change', () => {
-      document.body.classList.toggle('dark');
-      document.body.classList.toggle('light');
-    });
+    const heroSection = document.querySelector('.hero-section');
+    const bubbleWords = [...words];
+    for (let k = 0; k < 20; k++) {
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      bubble.textContent = bubbleWords[Math.floor(Math.random() * bubbleWords.length)];
+      bubble.style.left = Math.random() * 100 + 'vw';
+      bubble.style.fontSize = (12 + Math.random()*24) + 'px';
+      bubble.style.animationDuration = (5 + Math.random()*5) + 's';
+      bubble.style.animationDelay = Math.random()*5 + 's';
+      heroSection.appendChild(bubble);
+    }
 
     document.querySelectorAll('button[data-scroll]').forEach(link => {
       link.addEventListener('click', e => {
         e.preventDefault();
+        document.querySelectorAll('.top-nav button').forEach(b=>b.classList.remove('active'));
+        link.classList.add('active');
         const target = document.querySelector(link.getAttribute('data-scroll'));
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
+
+    // Scroll animation
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){ entry.target.classList.add('in-view'); }
+      });
+    }, { threshold: 0.2 });
+    sections.forEach(sec => observer.observe(sec));
   </script>
 </body>
 </html>
