@@ -3,7 +3,7 @@
 This is my personal portfolio website, hosted on **GitHub Pages**. It contains my resume, projects, skills, and contact information.
 
 ## Live Website
-[Visit my portfolio](https://CringeKid102.portfolio.github.io/)
+[Visit my portfolio](https://cringekid102.portfolio.github.io/)
 
 ## Structure
 - `index.html` — main portfolio page
