@@ -17,23 +17,7 @@
     html, body { height: 100%; margin: 0; font-family: Inter, sans-serif; scroll-behavior: smooth; background: var(--bg); color: var(--text); overflow-x: hidden; }
 
     .container { max-width: 980px; margin: 0 auto; padding: 28px; position: relative; }
-
-    /* Cursor effects */
-    .cursor-dot, .cursor-outline {
-      pointer-events: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      border-radius: 50%;
-      opacity: 0;
-      transform: translate(-50%, -50%);
-      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-      z-index: 1000;
-    }
-    .cursor-dot { width: 8px; height: 8px; background: var(--accent); }
-    .cursor-outline { width: 40px; height: 40px; border: 2px solid var(--accent); }
-    .cursor-hover .cursor-outline { transform: translate(-50%, -50%) scale(1.5); }
-
+    
     .top-nav { 
       display: flex; gap: 12px; justify-content: center; margin-top: 16px; flex-wrap: wrap; 
       position: sticky; top: 0; z-index: 10; 
@@ -213,8 +197,7 @@
       border-color: var(--accent);
       box-shadow: 0 4px 12px rgba(108,99,255,0.3);
     }
-
-    /* Interactive background particles */
+    
     .bg-particles {
       position: fixed;
       top: 0; left: 0;
@@ -234,8 +217,7 @@
       0%, 100% { transform: translateY(0px) rotate(0deg); }
       50% { transform: translateY(-20px) rotate(180deg); }
     }
-
-    /* Contact form enhancements */
+    
     .contact-list li {
       padding: 8px 0;
       transition: all 0.3s ease;
@@ -284,7 +266,6 @@
       border-top: 1px solid rgba(255,255,255,0.1);
     }
 
-    /* Scroll progress indicator */
     .scroll-progress {
       position: fixed;
       top: 0; left: 0;
@@ -426,7 +407,6 @@
     }
     type();
 
-    // Enhanced bubbles with rotation
     const heroSection = document.querySelector('.hero-section');
     const bubbleWords = [...words];
     for (let k = 0; k < 20; k++) {
@@ -457,23 +437,6 @@
       cursorOutline.style.opacity = '1';
     });
 
-    // Cursor hover effects
-    const hoverElements = document.querySelectorAll('button, .pill, .section-photo, .card, .button, a');
-    hoverElements.forEach(el => {
-      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-    });
-
-    // Hero section mouse move effect
-    heroSection.addEventListener('mousemove', e => {
-      const rect = heroSection.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      heroSection.style.setProperty('--x', x + '%');
-      heroSection.style.setProperty('--y', y + '%');
-    });
-
-    // Navigation with improved animations
     document.querySelectorAll('button[data-scroll]').forEach(link => {
       link.addEventListener('click', e => {
         e.preventDefault();
@@ -484,7 +447,6 @@
       });
     });
 
-    // Enhanced intersection observer
     const sections = document.querySelectorAll('.section');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -497,7 +459,6 @@
     }, { threshold: 0.2, rootMargin: '0px 0px -100px 0px' });
     sections.forEach(sec => observer.observe(sec));
 
-    // Scroll progress indicator
     const scrollProgress = document.querySelector('.scroll-progress');
     window.addEventListener('scroll', () => {
       const scrollTop = window.pageYOffset;
@@ -506,7 +467,6 @@
       scrollProgress.style.width = scrollPercent * 100 + '%';
     });
 
-    // Background particles
     const particlesContainer = document.querySelector('.bg-particles');
     for (let i = 0; i < 50; i++) {
       const particle = document.createElement('div');
@@ -518,7 +478,6 @@
       particlesContainer.appendChild(particle);
     }
 
-    // Skill pills click effect
     document.querySelectorAll('.pill').forEach(pill => {
       pill.addEventListener('click', () => {
         pill.style.transform = 'scale(0.95)';
@@ -528,7 +487,6 @@
       });
     });
 
-    // Contact items click to copy
     document.querySelectorAll('.contact-list li').forEach(item => {
       item.addEventListener('click', () => {
         const text = item.textContent;
@@ -537,8 +495,7 @@
         } else if (text.includes('Phone:')) {
           navigator.clipboard?.writeText('(343) 777-8397');
         }
-        
-        // Visual feedback
+
         const original = item.innerHTML;
         item.innerHTML = '<strong>Copied!</strong>';
         item.style.color = 'var(--accent)';
