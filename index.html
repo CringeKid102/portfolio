@@ -1,82 +1,201 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>William Ding — Portfolio</title>
-<meta name="description" content="Portfolio — William Ding: student, programmer, artist, and multilingual tutor." />
-<style>
-:root{--accent:#6c63ff;--bg:#0f1724;--card:#0b1220;--muted:#9aa4b2;color-scheme:dark}
-*{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;background:linear-gradient(180deg,#071023 0%, #071726 60%);color:#e6eef6}
-.container{max-width:980px;margin:36px auto;padding:28px}
-header{display:flex;gap:20px;align-items:center}
-.avatar{width:96px;height:96px;border-radius:12px;flex:0 0 96px;background:linear-gradient(135deg,var(--accent),#00c2ff);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:32px}
-h1{margin:0;font-size:26px}
-.sub{color:var(--muted);margin-top:6px;font-size:14px}
-nav{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
-a.button{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:8px;text-decoration:none;color:inherit;font-size:13px}
-.grid{display:grid;grid-template-columns:1fr 320px;gap:22px;margin-top:22px}
-.card{background:rgba(255,255,255,0.02);border-radius:12px;padding:16px}
-.section-title{font-weight:700;margin-bottom:8px}
-.contact-list{list-style:none;padding:0;margin:8px 0 0 0}
-.contact-list li{font-size:14px;color:var(--muted);margin:6px 0}
-.pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03);font-size:13px;margin:6px 6px 6px 0}
-.project{margin-bottom:12px}
-.skills{display:flex;flex-wrap:wrap;gap:8px}
-footer{color:var(--muted);font-size:13px;margin-top:28px;text-align:center}
-/* responsive */
-@media (max-width:880px){.grid{grid-template-columns:1fr;}.avatar{width:80px;height:80px}}
-/* subtle focus */
-a.button:focus{outline:2px solid rgba(108,99,255,0.14);outline-offset:3px}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>William Ding — Portfolio</title>
+  <meta name="description" content="Portfolio — William Ding: student, programmer, artist, and multilingual tutor." />
+  <style>
+    :root {
+      --accent: #6c63ff;
+      --bg-dark: #0f1724;
+      --bg-light: #f5f5f5;
+      --text-dark: #e6eef6;
+      --text-light: #1a1a1a;
+      --card-dark: #0b1220;
+      --card-light: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; font-family: Inter, sans-serif; }
+
+    body.dark { background: var(--bg-dark); color: var(--text-dark); }
+    body.light { background: var(--bg-light); color: var(--text-light); }
+
+    .container { max-width: 980px; margin: 36px auto; padding: 28px; }
+
+    header { display: flex; gap: 20px; align-items: center; }
+    .avatar { width: 96px; height: 96px; border-radius: 12px; flex: 0 0 96px; background: linear-gradient(135deg, var(--accent), #00c2ff); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 32px; }
+    h1 { margin: 0; font-size: 26px; }
+    .sub { margin-top: 6px; font-size: 14px; }
+    nav { margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap; }
+    a.button { background: transparent; border: 1px solid rgba(255,255,255,0.06); padding: 8px 12px; border-radius: 8px; text-decoration: none; color: inherit; font-size: 13px; }
+
+    .hero { margin-top: 20px; font-size: 24px; min-height: 40px; font-weight: 600; }
+    .typewriter { display: inline; border-right: 2px solid var(--accent); white-space: nowrap; overflow: hidden; }
+
+    .grid { display: grid; grid-template-columns: 1fr 320px; gap: 22px; margin-top: 22px; }
+    .card { background: rgba(255,255,255,0.02); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+    .section-title { font-weight: 700; margin-bottom: 8px; }
+    .contact-list, ul { list-style: none; padding: 0; margin: 8px 0 0 0; }
+    .contact-list li, ul li { font-size: 14px; color: rgba(255,255,255,0.6); margin: 6px 0; }
+    .pill { display: inline-block; padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,0.03); font-size: 13px; margin: 6px 6px 6px 0; }
+
+    footer { color: rgba(255,255,255,0.6); font-size: 13px; margin-top: 28px; text-align: center; }
+
+    @media (max-width:880px) { .grid { grid-template-columns: 1fr; } .avatar { width: 80px; height: 80px; } }
+  </style>
 </head>
-<body>
-<div class="container">
-<header>
-<div class="avatar">WD</div>
-<div>
-<h1>William Ding</h1>
-<div class="sub">Grade 10 • Aspiring Computer Scientist & Game Developer • Multilingual Tutor</div>
-<nav>
-<a class="button" href="#experience">Experience</a>
-<a class="button" href="#projects">Projects</a>
-<a class="button" href="#skills">Skills</a>
-<a class="button" href="#contact">Contact</a>
-</nav>
-</div>
-</header>
+<body class="dark">
+  <div class="container">
+    <header>
+      <div class="avatar">WD</div>
+      <div>
+        <h1>William Ding</h1>
+        <div class="sub">Aspiring Game Developer & Multilingual Tutor</div>
+        <nav>
+          <a class="button" href="#experience">Experience</a>
+          <a class="button" href="#projects">Projects</a>
+          <a class="button" href="#skills">Skills</a>
+          <a class="button" href="#contact">Contact</a>
+          <a class="button" id="theme-toggle" href="#">Toggle Light/Dark</a>
+        </nav>
+      </div>
+    </header>
 
+    <div class="hero">
+      <span class="typewriter" id="typewriter"></span>
+    </div>
 
-<div class="grid">
-<main>
-<section id="experience" class="card">
-<div class="section-title">Experience</div>
-<div>
-<strong>Auxillium — French & Math Mentor (Volunteer)</strong>
-<div class="sub">September 2023 — Present</div>
-<ul>
-<li>Provided personalized free mentoring to middle and elementary students in French and math.</li>
-<li>Developed custom lesson plans adapted to individual learning styles.</li>
-<li>Mentored 3 students weekly and improved their grades and confidence.</li>
-</ul>
-</div>
-<div style="margin-top:12px">
-<strong>Self-employed — French Teacher</strong>
-<div class="sub">February 2024 — Present</div>
-<ul>
-<li>Taught beginner to intermediate French via online interactive sessions.</li>
-<li>Managed scheduling, planning, and progress tracking independently.</li>
-</ul>
-</div>
-</section>
+    <div class="grid">
+      <main>
+        <section id="experience" class="card">
+          <div class="section-title">Experience</div>
+          <div>
+            <strong>Auxillium — French & Math Mentor (Volunteer)</strong>
+            <div class="sub">September 2023 — Present</div>
+            <ul>
+              <li>Provided personalized free mentoring to middle and elementary students in French and math.</li>
+              <li>Developed custom lesson plans adapted to individual learning styles.</li>
+              <li>Mentored 3 students weekly and improved their grades and confidence.</li>
+            </ul>
+          </div>
+          <div style="margin-top:12px">
+            <strong>Self-employed — French Teacher</strong>
+            <div class="sub">February 2024 — Present</div>
+            <ul>
+              <li>Taught beginner to intermediate French via online interactive sessions.</li>
+              <li>Managed scheduling, planning, and progress tracking independently.</li>
+            </ul>
+          </div>
+        </section>
 
+        <section id="education" class="card">
+          <div class="section-title">Education</div>
+          <strong>Merivale High School — International Baccalaureate Diploma</strong>
+          <div class="sub">September 2024 — June 2027 (ongoing)</div>
+          <p>Currently enrolled in the IB program with a STEM focus. Active member of the Merivale swimming team.</p>
 
-<section id="education" class="card" style="margin-top:18px">
-<div class="section-title">Education</div>
-<strong>Merivale High School — International Baccalaureate Diploma</strong>
-<div class="sub">September 2024 — June 2027 (ongoing)</div>
-<p>Currently enrolled in the IB program with a STEM focus. Active member of the Merivale swimming team.</p>
+          <div style="margin-top:10px">
+            <strong>Meritus Academy — Extracurricular STEM</strong>
+            <div class="sub">September 2024 — June 2027</div>
+            <p>Advanced classes: Chemistry, Biology, Physics, Math and Computer Science.</p>
+          </div>
+        </section>
 
+        <section id="projects" class="card">
+          <div class="section-title">Projects</div>
+          <div class="project">
+            <strong>HoloLegends — 2D Pixel Video Game</strong>
+            <div class="sub">In development</div>
+            <p>Designing a 2D pixel fantasy adventure with original pixel art and a custom combat system. Game logic written in GML (GameMaker Language). Collaborating with other devs on balance and testing.</p>
+          </div>
+        </section>
 
-<div style="margin-top:10px">
+        <section id="awards" class="card">
+          <div class="section-title">Awards & Achievements</div>
+          <ul>
+            <li>Certificate of Distinction — Cayley Mathematics Contest (top 25%), University of Waterloo, 2025</li>
+            <li>Silver Medalist — Academic Honor (90%+ average), Merivale High School, 2025</li>
+            <li>Represented Merivale HS at provincial swimming competitions</li>
+          </ul>
+        </section>
+      </main>
+
+      <aside>
+        <div id="contact" class="card">
+          <div class="section-title">Contact</div>
+          <ul class="contact-list">
+            <li><strong>Address:</strong> 949 Rossburn Crescent, Nepean, ON K2J 0L6</li>
+            <li><strong>Phone:</strong> (343) 777-8397</li>
+            <li><strong>Email:</strong> DINW21164@gmail.com</li>
+          </ul>
+          <div style="margin-top:12px">
+            <a class="button" href="mailto:DINW21164@gmail.com">Email me</a>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <div class="section-title">Skills</div>
+          <div class="skills">
+            <span class="pill">Python</span>
+            <span class="pill">GML</span>
+            <span class="pill">C++</span>
+            <span class="pill">Game Design</span>
+            <span class="pill">Pixel Art</span>
+            <span class="pill">Creative Thinking</span>
+            <span class="pill">Time Management</span>
+            <span class="pill">Multilingual</span>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <div class="section-title">Languages</div>
+          <div class="sub">French — Fluent<br/>English — Fluent<br/>Mandarin — Fluent<br/>Spanish — Conversational<br/>Japanese — Conversational</div>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <div class="section-title">Interests</div>
+          <div class="sub">Computer science, Art, Swimming, Learning languages, Video games</div>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      <div>Designed &amp; maintained by William Ding — Built for GitHub Pages</div>
+    </footer>
+  </div>
+
+  <script>
+    // Typewriter "Hello" in multiple languages
+    const words = ['Hello', 'Bonjour', '你好', 'Hola', 'こんにちは'];
+    const typewriterEl = document.getElementById('typewriter');
+    let i = 0, j = 0, currentWord = '', isDeleting = false;
+
+    function type() {
+      const fullWord = words[i];
+      if (!isDeleting) {
+        currentWord = fullWord.substring(0, j+1);
+        j++;
+        typewriterEl.textContent = currentWord;
+        if (j === fullWord.length) { isDeleting = true; setTimeout(type, 1000); return; }
+      } else {
+        currentWord = fullWord.substring(0, j-1);
+        j--;
+        typewriterEl.textContent = currentWord;
+        if (j === 0) { isDeleting = false; i = (i+1) % words.length; setTimeout(type, 500); return; }
+      }
+      setTimeout(type, isDeleting ? 80 : 120);
+    }
+
+    type();
+
+    // Light/Dark toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.body.classList.toggle('dark');
+      document.body.classList.toggle('light');
+    });
+  </script>
+</body>
+</html>
