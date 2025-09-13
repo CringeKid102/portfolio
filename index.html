@@ -18,8 +18,7 @@
 
     .container { max-width: 980px; margin: 0 auto; padding: 28px; }
 
-    .top-nav { display: flex; gap: 12px; justify-content: center; margin-top: 16px; flex-wrap: wrap; position: sticky; top: 0; z-index: 10; height: var(--nav-height); line-height: var(--nav-height); background: rgba(15,23,36,0.95); padding: 8px 0; border-radius: 12px; }
-    .top-nav a { text-decoration: none; color: inherit; }
+    .top-nav { display: flex; gap: 12px; justify-content: center; margin-top: 16px; flex-wrap: wrap; position: sticky; top: 0; z-index: 10; background: rgba(15,23,36,0.95); padding: 8px 0; border-radius: 12px; }
     .top-nav button { background: transparent; border: 1px solid rgba(255,255,255,0.06); padding: 8px 12px; border-radius: 8px; font-size: 14px; cursor: pointer; color: inherit; transition: 0.3s; }
     .top-nav button.active { border-color: var(--accent); color: var(--accent); }
 
@@ -185,17 +184,13 @@
     }
 
     // Fix nav scrolling
-    document.querySelectorAll('button[data-scroll]').forEach(btn => {
-      btn.addEventListener('click', e => {
-        const targetId = btn.getAttribute('data-scroll');
-        const targetSection = document.getElementById(targetId);
-        if(targetSection){
-          const navHeight = document.querySelector('.top-nav').offsetHeight;
-          const topPos = targetSection.offsetTop - navHeight - 10;
-          window.scrollTo({ top: topPos, behavior: 'smooth' });
-          document.querySelectorAll('.top-nav button').forEach(b=>b.classList.remove('active'));
-          btn.classList.add('active');
-        }
+    document.querySelectorAll('button[data-scroll]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelectorAll('.top-nav button').forEach(b=>b.classList.remove('active'));
+        link.classList.add('active');
+        const target = document.querySelector(link.getAttribute('data-scroll'));
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
 
