@@ -16,22 +16,22 @@
       --card-light: #ffffff;
     }
     * { box-sizing: border-box; }
-    html, body { height: 100%; margin: 0; font-family: Inter, sans-serif; }
+    html, body { height: 100%; margin: 0; font-family: Inter, sans-serif; scroll-behavior: smooth; }
 
     body.dark { background: var(--bg-dark); color: var(--text-dark); }
     body.light { background: var(--bg-light); color: var(--text-light); }
 
-    .container { max-width: 980px; margin: 36px auto; padding: 28px; }
+    .container { max-width: 980px; margin: 0 auto; padding: 28px; }
 
-    header { display: flex; gap: 20px; align-items: center; }
+    header { display: flex; gap: 20px; align-items: center; margin-top: 16px; }
     .avatar { width: 96px; height: 96px; border-radius: 12px; flex: 0 0 96px; background: linear-gradient(135deg, var(--accent), #00c2ff); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 32px; }
     h1 { margin: 0; font-size: 26px; }
     .sub { margin-top: 6px; font-size: 14px; }
     nav { margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap; }
-    a.button { background: transparent; border: 1px solid rgba(255,255,255,0.06); padding: 8px 12px; border-radius: 8px; text-decoration: none; color: inherit; font-size: 13px; }
+    a.button { background: transparent; border: 1px solid rgba(255,255,255,0.06); padding: 8px 12px; border-radius: 8px; text-decoration: none; color: inherit; font-size: 13px; cursor: pointer; }
 
-    .hero { margin-top: 20px; font-size: 24px; min-height: 40px; font-weight: 600; }
-    .typewriter { display: inline; border-right: 2px solid var(--accent); white-space: nowrap; overflow: hidden; }
+    .hero-section { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 60vh; text-align: center; }
+    .typewriter { font-size: 48px; font-weight: 700; border-right: 4px solid var(--accent); white-space: nowrap; overflow: hidden; }
 
     .grid { display: grid; grid-template-columns: 1fr 320px; gap: 22px; margin-top: 22px; }
     .card { background: rgba(255,255,255,0.02); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
@@ -40,9 +40,11 @@
     .contact-list li, ul li { font-size: 14px; color: rgba(255,255,255,0.6); margin: 6px 0; }
     .pill { display: inline-block; padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,0.03); font-size: 13px; margin: 6px 6px 6px 0; }
 
+    img.placeholder { width: 100%; height: auto; border-radius: 12px; margin-top: 10px; background: rgba(255,255,255,0.05); }
+
     footer { color: rgba(255,255,255,0.6); font-size: 13px; margin-top: 28px; text-align: center; }
 
-    @media (max-width:880px) { .grid { grid-template-columns: 1fr; } .avatar { width: 80px; height: 80px; } }
+    @media (max-width:880px) { .grid { grid-template-columns: 1fr; } .avatar { width: 80px; height: 80px; } .typewriter { font-size: 36px; } }
   </style>
 </head>
 <body class="dark">
@@ -53,30 +55,31 @@
         <h1>William Ding</h1>
         <div class="sub">Aspiring Game Developer & Multilingual Tutor</div>
         <nav>
-          <a class="button" href="#experience">Experience</a>
-          <a class="button" href="#projects">Projects</a>
-          <a class="button" href="#skills">Skills</a>
-          <a class="button" href="#contact">Contact</a>
+          <a class="button" data-scroll="#experience">Experience</a>
+          <a class="button" data-scroll="#projects">Projects</a>
+          <a class="button" data-scroll="#skills">Skills</a>
+          <a class="button" data-scroll="#contact">Contact</a>
           <a class="button" id="theme-toggle" href="#">Toggle Light/Dark</a>
         </nav>
       </div>
     </header>
 
-    <div class="hero">
+    <section class="hero-section">
       <span class="typewriter" id="typewriter"></span>
-    </div>
+    </section>
 
     <div class="grid">
       <main>
         <section id="experience" class="card">
           <div class="section-title">Experience</div>
+          <img class="placeholder" src="https://via.placeholder.com/600x200" alt="Experience placeholder">
           <div>
             <strong>Auxillium — French & Math Mentor (Volunteer)</strong>
             <div class="sub">September 2023 — Present</div>
             <ul>
-              <li>Provided personalized free mentoring to middle and elementary students in French and math.</li>
+              <li>Provided personalized mentoring to middle and elementary students in French and math.</li>
               <li>Developed custom lesson plans adapted to individual learning styles.</li>
-              <li>Mentored 3 students weekly and improved their grades and confidence.</li>
+              <li>Mentored 3 students weekly, improving grades and confidence.</li>
             </ul>
           </div>
           <div style="margin-top:12px">
@@ -91,6 +94,7 @@
 
         <section id="education" class="card">
           <div class="section-title">Education</div>
+          <img class="placeholder" src="https://via.placeholder.com/600x150" alt="Education placeholder">
           <strong>Merivale High School — International Baccalaureate Diploma</strong>
           <div class="sub">September 2024 — June 2027 (ongoing)</div>
           <p>Currently enrolled in the IB program with a STEM focus. Active member of the Merivale swimming team.</p>
@@ -98,12 +102,13 @@
           <div style="margin-top:10px">
             <strong>Meritus Academy — Extracurricular STEM</strong>
             <div class="sub">September 2024 — June 2027</div>
-            <p>Advanced classes: Chemistry, Biology, Physics, Math and Computer Science.</p>
+            <p>Advanced classes: Chemistry, Biology, Physics, Math, and Computer Science.</p>
           </div>
         </section>
 
         <section id="projects" class="card">
           <div class="section-title">Projects</div>
+          <img class="placeholder" src="https://via.placeholder.com/600x200" alt="Project placeholder">
           <div class="project">
             <strong>HoloLegends — 2D Pixel Video Game</strong>
             <div class="sub">In development</div>
@@ -113,6 +118,7 @@
 
         <section id="awards" class="card">
           <div class="section-title">Awards & Achievements</div>
+          <img class="placeholder" src="https://via.placeholder.com/600x100" alt="Awards placeholder">
           <ul>
             <li>Certificate of Distinction — Cayley Mathematics Contest (top 25%), University of Waterloo, 2025</li>
             <li>Silver Medalist — Academic Honor (90%+ average), Merivale High School, 2025</li>
@@ -167,7 +173,7 @@
 
   <script>
     // Typewriter "Hello" in multiple languages
-    const words = ['Hello', 'Bonjour', '你好', 'Hola', 'こんにちは'];
+    const words = ['Hello','Bonjour','Hola','Ciao','Hallo','Привет','你好','안녕하세요','مرحبا','नमस्ते','Hei','Salut'];
     const typewriterEl = document.getElementById('typewriter');
     let i = 0, j = 0, currentWord = '', isDeleting = false;
 
@@ -186,7 +192,6 @@
       }
       setTimeout(type, isDeleting ? 80 : 120);
     }
-
     type();
 
     // Light/Dark toggle
@@ -195,6 +200,15 @@
       e.preventDefault();
       document.body.classList.toggle('dark');
       document.body.classList.toggle('light');
+    });
+
+    // Smooth scroll without changing URL hash
+    document.querySelectorAll('a[data-scroll]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('data-scroll'));
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
     });
   </script>
 </body>
