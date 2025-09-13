@@ -59,7 +59,6 @@
       <button data-scroll="#projects">Projects</button>
       <button data-scroll="#awards">Awards & Achievements</button>
       <button data-scroll="#skills">Skills</button>
-      <button data-scroll="#contact">Contact</button>
     </div>
 
     <section class="hero-section">
@@ -176,21 +175,22 @@
       bubble.className = 'bubble';
       bubble.textContent = bubbleWords[Math.floor(Math.random() * bubbleWords.length)];
       bubble.style.left = Math.random() * 100 + 'vw';
-      bubble.style.fontSize = (20 + Math.random()*30) + 'px'; // bigger bubbles
+      bubble.style.fontSize = (20 + Math.random()*30) + 'px';
       bubble.style.animationDuration = (5 + Math.random()*5) + 's';
-      bubble.style.animationDelay = Math.random()*0.5 + 's';
+      bubble.style.animationDelay = '0s'; // start immediately
       heroSection.appendChild(bubble);
       bubble.getBoundingClientRect();
     }
 
+    // Smooth scroll with sticky nav offset
     document.querySelectorAll('button[data-scroll]').forEach(link => {
       link.addEventListener('click', e => {
         e.preventDefault();
         document.querySelectorAll('.top-nav button').forEach(b=>b.classList.remove('active'));
         link.classList.add('active');
         const target = document.querySelector(link.getAttribute('data-scroll'));
-        const navOffset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height'));
-        const targetPos = target.getBoundingClientRect().top + window.pageYOffset - navOffset - 12;
+        const navOffset = document.querySelector('.top-nav').offsetHeight;
+        const targetPos = target.offsetTop - navOffset;
         window.scrollTo({ top: targetPos, behavior: 'smooth' });
       });
     });
@@ -203,5 +203,4 @@
     }, { threshold: 0.2 });
     sections.forEach(sec => observer.observe(sec));
   </script>
-</body>
-</html>
+</body
