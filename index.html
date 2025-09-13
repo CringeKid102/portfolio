@@ -27,8 +27,9 @@
     .top-nav { display: flex; gap: 12px; justify-content: center; margin-top: 16px; flex-wrap: wrap; }
     .top-nav button { background: transparent; border: 1px solid rgba(255,255,255,0.06); padding: 8px 12px; border-radius: 8px; font-size: 13px; cursor: pointer; color: inherit; }
 
-    .hero-section { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 60vh; text-align: center; margin-top: 20px; }
-    .typewriter { font-size: 48px; font-weight: 700; border-right: 4px solid var(--accent); white-space: nowrap; overflow: hidden; }
+    /* Hero section with background */
+    .hero-section { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 60vh; text-align: center; margin-top: 20px; background: linear-gradient(135deg, #6c63ff, #00c2ff); color: white; border-radius: 12px; }
+    .typewriter { font-size: 48px; font-weight: 700; border-right: 4px solid #fff; white-space: nowrap; overflow: hidden; }
 
     header { display: flex; gap: 20px; align-items: center; margin-top: 32px; justify-content: center; flex-direction: column; text-align: center; }
     .avatar { width: 96px; height: 96px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), #00c2ff); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 32px; margin-bottom: 8px; }
@@ -36,13 +37,23 @@
     .sub { margin-top: 6px; font-size: 14px; }
 
     .grid { display: grid; grid-template-columns: 1fr 320px; gap: 22px; margin-top: 22px; }
-    .card { background: rgba(255,255,255,0.02); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+    .card { background: rgba(255,255,255,0.02); border-radius: 12px; padding: 16px; margin-bottom: 16px; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+
     .section-title { font-weight: 700; margin-bottom: 8px; }
     .contact-list, ul { list-style: none; padding: 0; margin: 8px 0 0 0; }
     .contact-list li, ul li { font-size: 14px; color: rgba(255,255,255,0.6); margin: 6px 0; }
     .pill { display: inline-block; padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,0.03); font-size: 13px; margin: 6px 6px 6px 0; }
 
     img.placeholder { width: 100%; height: auto; border-radius: 12px; margin-top: 10px; background: rgba(255,255,255,0.05); }
+
+    /* Toggle switch */
+    .switch { position: relative; display: inline-block; width: 50px; height: 24px; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+    .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+    input:checked + .slider { background-color: #6c63ff; }
+    input:checked + .slider:before { transform: translateX(26px); }
 
     footer { color: rgba(255,255,255,0.6); font-size: 13px; margin-top: 28px; text-align: center; }
 
@@ -58,7 +69,10 @@
       <button data-scroll="#skills">Skills</button>
       <button data-scroll="#awards">Awards & Achievements</button>
       <button data-scroll="#contact">Contact</button>
-      <button id="theme-toggle">Toggle Light/Dark</button>
+      <label class="switch">
+        <input type="checkbox" id="theme-toggle">
+        <span class="slider"></span>
+      </label>
     </div>
 
     <!-- Hero section with multilingual typewriter effect -->
@@ -78,56 +92,27 @@
         <section id="experience" class="card">
           <div class="section-title">Experience</div>
           <img class="placeholder" src="https://via.placeholder.com/600x200" alt="Experience placeholder">
-          <div>
-            <strong>Auxillium — French & Math Mentor (Volunteer)</strong>
-            <div class="sub">September 2023 — Present</div>
-            <ul>
-              <li>Provided personalized mentoring to middle and elementary students in French and math.</li>
-              <li>Developed custom lesson plans adapted to individual learning styles.</li>
-              <li>Mentored 3 students weekly, improving grades and confidence.</li>
-            </ul>
-          </div>
-          <div style="margin-top:12px">
-            <strong>Self-employed — French Teacher</strong>
-            <div class="sub">February 2024 — Present</div>
-            <ul>
-              <li>Taught beginner to intermediate French via online interactive sessions.</li>
-              <li>Managed scheduling, planning, and progress tracking independently.</li>
-            </ul>
-          </div>
-        </section>
-
-        <section id="education" class="card">
-          <div class="section-title">Education</div>
-          <img class="placeholder" src="https://via.placeholder.com/600x150" alt="Education placeholder">
-          <strong>Merivale High School — International Baccalaureate Diploma</strong>
-          <div class="sub">September 2024 — June 2027 (ongoing)</div>
-          <p>Currently enrolled in the IB program with a STEM focus. Active member of the Merivale swimming team.</p>
-
-          <div style="margin-top:10px">
-            <strong>Meritus Academy — Extracurricular STEM</strong>
-            <div class="sub">September 2024 — June 2027</div>
-            <p>Advanced classes: Chemistry, Biology, Physics, Math, and Computer Science.</p>
-          </div>
+          <ul>
+            <li>Auxillium — French & Math Mentor (Volunteer)</li>
+            <li>Self-employed — French Teacher</li>
+          </ul>
         </section>
 
         <section id="projects" class="card">
           <div class="section-title">Projects</div>
           <img class="placeholder" src="https://via.placeholder.com/600x200" alt="Project placeholder">
-          <div class="project">
-            <strong>HoloLegends — 2D Pixel Video Game</strong>
-            <div class="sub">In development</div>
-            <p>Designing a 2D pixel fantasy adventure with original pixel art and a custom combat system. Game logic written in GML (GameMaker Language). Collaborating with other devs on balance and testing.</p>
-          </div>
+          <ul>
+            <li><a href="#">Project 1 Link (placeholder)</a></li>
+            <li><a href="#">Project 2 Link (placeholder)</a></li>
+          </ul>
         </section>
 
         <section id="awards" class="card">
           <div class="section-title">Awards & Achievements</div>
           <img class="placeholder" src="https://via.placeholder.com/600x100" alt="Awards placeholder">
           <ul>
-            <li>Certificate of Distinction — Cayley Mathematics Contest (top 25%), University of Waterloo, 2025</li>
-            <li>Silver Medalist — Academic Honor (90%+ average), Merivale High School, 2025</li>
-            <li>Represented Merivale HS at provincial swimming competitions</li>
+            <li><a href="#">Award PDF 1 (placeholder)</a></li>
+            <li><a href="#">Award PDF 2 (placeholder)</a></li>
           </ul>
         </section>
       </main>
@@ -153,4 +138,57 @@
             <span class="pill">C++</span>
             <span class="pill">Game Design</span>
             <span class="pill">Pixel Art</span>
-            <span class="pill">
+            <span class="pill">Creative Thinking</span>
+            <span class="pill">Time Management</span>
+            <span class="pill">Multilingual</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      <div>Designed & maintained by William Ding — Built for GitHub Pages</div>
+    </footer>
+  </div>
+
+  <script>
+    // Typewriter "Hello" in multiple languages
+    const words = ['Hello','Bonjour','Hola','Ciao','Hallo','Привет','你好','안녕하세요','مرحبا','नमस्ते','Hei','Salut'];
+    const typewriterEl = document.getElementById('typewriter');
+    let i = 0, j = 0, currentWord = '', isDeleting = false;
+
+    function type() {
+      const fullWord = words[i];
+      if (!isDeleting) {
+        currentWord = fullWord.substring(0, j+1);
+        j++;
+        typewriterEl.textContent = currentWord;
+        if (j === fullWord.length) { isDeleting = true; setTimeout(type, 1000); return; }
+      } else {
+        currentWord = fullWord.substring(0, j-1);
+        j--;
+        typewriterEl.textContent = currentWord;
+        if (j === 0) { isDeleting = false; i = (i+1) % words.length; setTimeout(type, 500); return; }
+      }
+      setTimeout(type, isDeleting ? 80 : 120);
+    }
+    type();
+
+    // Light/dark mode toggle
+    const themeToggleInput = document.querySelector('#theme-toggle');
+    themeToggleInput.addEventListener('change', () => {
+      document.body.classList.toggle('dark');
+      document.body.classList.toggle('light');
+    });
+
+    // Smooth scroll buttons
+    document.querySelectorAll('button[data-scroll]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('data-scroll'));
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+</body>
+</html>
