@@ -56,9 +56,9 @@
     <div class="top-nav">
       <button data-scroll="#about">About Me</button>
       <button data-scroll="#experience">Experience</button>
-      <button data-scroll="#skills">Skills</button>
       <button data-scroll="#projects">Projects</button>
       <button data-scroll="#awards">Awards & Achievements</button>
+      <button data-scroll="#skills">Skills</button>
       <button data-scroll="#contact">Contact</button>
     </div>
 
@@ -176,9 +176,9 @@
       bubble.className = 'bubble';
       bubble.textContent = bubbleWords[Math.floor(Math.random() * bubbleWords.length)];
       bubble.style.left = Math.random() * 100 + 'vw';
-      bubble.style.fontSize = (12 + Math.random()*24) + 'px';
+      bubble.style.fontSize = (20 + Math.random()*30) + 'px'; // bigger bubbles
       bubble.style.animationDuration = (5 + Math.random()*5) + 's';
-      bubble.style.animationDelay = Math.random()*0.5 + 's'; // start almost immediately
+      bubble.style.animationDelay = Math.random()*0.5 + 's';
       heroSection.appendChild(bubble);
       bubble.getBoundingClientRect();
     }
