@@ -7,7 +7,7 @@ This is my personal portfolio website, hosted on **GitHub Pages**. It contains m
 
 ## Structure
 - `index.html` — main portfolio page
-- `assets/` — place for images, CSS, or JavaScript
+- `assets/` — place for images and pdfs
 
 ## Features
 - Responsive design for desktop and mobile
