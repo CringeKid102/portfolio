@@ -434,23 +434,6 @@
       heroSection.appendChild(bubble);
     }
 
-    // Custom cursor
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorOutline = document.querySelector('.cursor-outline');
-
-    window.addEventListener('mousemove', e => {
-      const posX = e.clientX;
-      const posY = e.clientY;
-      
-      cursorDot.style.left = `${posX}px`;
-      cursorDot.style.top = `${posY}px`;
-      cursorDot.style.opacity = '1';
-      
-      cursorOutline.style.left = `${posX}px`;
-      cursorOutline.style.top = `${posY}px`;
-      cursorOutline.style.opacity = '1';
-    });
-
     document.querySelectorAll('button[data-scroll]').forEach(link => {
       link.addEventListener('click', e => {
         e.preventDefault();
@@ -481,17 +464,6 @@
       scrollProgress.style.width = scrollPercent * 100 + '%';
     });
 
-    const particlesContainer = document.querySelector('.bg-particles');
-    for (let i = 0; i < 50; i++) {
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      particle.style.left = Math.random() * 100 + '%';
-      particle.style.top = Math.random() * 100 + '%';
-      particle.style.animationDelay = Math.random() * 6 + 's';
-      particle.style.animationDuration = (3 + Math.random() * 3) + 's';
-      particlesContainer.appendChild(particle);
-    }
-
     document.querySelectorAll('.pill').forEach(pill => {
       pill.addEventListener('click', () => {
         pill.style.transform = 'scale(0.95)';
@@ -508,6 +480,8 @@
           navigator.clipboard?.writeText('DINW21164@gmail.com');
         } else if (text.includes('Phone:')) {
           navigator.clipboard?.writeText('(343) 777-8397');
+        } else if (text.includes('Address:')) {
+          navigator.clipboard?.writeText('949 Rossburn Crescent, Nepean, ON K2J 0L6');
         }
 
         const original = item.innerHTML;
