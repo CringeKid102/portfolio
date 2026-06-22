@@ -179,6 +179,31 @@
       border-color: rgba(108,99,255,0.5);
     }
 
+    .certificate-embed {
+      width: 100%;
+      min-height: 340px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      background: #07101e;
+    }
+
+    .now-playing-details {
+      display: grid;
+      gap: 10px;
+    }
+
+    .now-playing-track {
+      font-size: 18px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .now-playing-meta {
+      color: rgba(255,255,255,0.78);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
     .pill { 
       display: inline-block; padding: 6px 12px; border-radius: 999px; 
       background: rgba(255,255,255,0.03); font-size: 13px; margin: 6px 6px 6px 0; 
@@ -315,6 +340,7 @@
       <button data-scroll="#experience">Experience</button>
       <button data-scroll="#projects">Projects</button>
       <button data-scroll="#awards">Awards & Achievements</button>
+      <button data-scroll="#music">Now Listening</button>
       <button data-scroll="#skills">Skills</button>
       <button data-scroll="#contact">Contact</button>
     </div>
@@ -366,6 +392,7 @@
           <li><strong>HoloLegends — 2D Pixel Game</strong>: In development, designed combat system, wrote game logic in GML. <a href="https://github.com/CringeKid102/HoloLegends">View Project</a></li>
           <li><strong>Silksong — Replication</strong>: Replication project of Hollow Knight Silksong developed in Pygame. <a href="https://github.com/CringeKid102/Silksong">View Project</a></li>
           <li><strong>Elden Ring — Replication</strong>: Replication project of Elden Ring developed in Pygame. <a href="https://github.com/CringeKid102/Elden-Ring">View Project</a></li>
+          <li><strong>Lyrics App</strong>: Work-in-progress lyrics app for discovering and following song lyrics in real time. <a href="#music">View live music integration</a></li>
         </ul>
       </div>
     </section>
@@ -378,8 +405,28 @@
           <li>CSMC — Certificate of Distinction (Top 25%) — 2025. <a href="assets/CSMC 18.pdf">PDF</a></li>
           <li>AMC12 — Top 10% — 2025. <a href="assets/Ding, William 10.pdf">PDF</a></li>
           <li>Merivale HS — Silver Medalist (90%+ average) — 2025. <a href="assets/SilverMedialist.pdf">PDF</a></li>
+          <li><strong>Hackerrank Python Basic Certificate</strong>: Completed the Python basics certificate. <a href="https://www.hackerrank.com/certificates/iframe/938f108f1258" target="_blank">View Certificate</a></li>
           <li>Swimming Competitions — Represented school at provincial level.</li>
         </ul>
+        <div class="card" style="margin-top: 16px;">
+          <div class="section-title" style="margin-bottom: 12px; font-size: 22px;">Hackerrank Certificate Preview</div>
+          <iframe class="certificate-embed" src="https://www.hackerrank.com/certificates/iframe/938f108f1258" title="Hackerrank Python Basic Certificate" loading="lazy"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section id="music" class="section">
+      <div class="section-photo">
+        <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.7); font-size:20px; text-align:center; padding: 24px;">
+          Music status integration
+        </div>
+      </div>
+      <div class="section-details">
+        <div class="section-title">Now Listening</div>
+        <p>Live music status powered by a custom API. Connect this site to a YouTube Music backend to show what you're currently listening to.</p>
+        <div id="now-playing-card" class="card">
+          <div id="now-playing-status">Loading current track…</div>
+        </div>
       </div>
     </section>
 
@@ -515,6 +562,35 @@
         }, 1000);
       });
     });
+
+    async function loadNowPlaying() {
+      const statusEl = document.getElementById('now-playing-status');
+      const endpoint = 'https://your-server.example.com/api/now-playing';
+
+      try {
+        const response = await fetch(endpoint, { cache: 'no-store' });
+        if (!response.ok) throw new Error('No live data');
+        const data = await response.json();
+        if (!data?.track) throw new Error('Invalid response');
+
+        statusEl.innerHTML = `
+          <div class="now-playing-details">
+            <div class="now-playing-track">${data.track}</div>
+            <div class="now-playing-meta">${data.artist || 'Unknown artist'}${data.album ? ' · ' + data.album : ''}${data.source ? ' · ' + data.source : ''}</div>
+          </div>
+        `;
+      } catch (error) {
+        statusEl.innerHTML = `
+          <div class="now-playing-details">
+            <div class="now-playing-track">Lyrics App development playlist</div>
+            <div class="now-playing-meta">Work in progress · Portfolio integration</div>
+            <div class="now-playing-meta">To enable live updates, replace <code>${endpoint}</code> with your own YouTube Music API backend.</div>
+          </div>
+        `;
+      }
+    }
+
+    loadNowPlaying();
 
     // Create floating stars
     const bgParticles = document.querySelector('.bg-particles');
